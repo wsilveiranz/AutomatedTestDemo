@@ -1,0 +1,68 @@
+{
+  "triggerMocks": {
+    "When_messages_are_available_in_a_queue_(peek-lock)": {
+      "name": "When_messages_are_available_in_a_queue_(peek-lock)",
+      "status": "Succeeded",
+      "outputs": {
+        "body": {
+          "contentData": {
+            "messageId": "1234",
+            "status": "new",
+            "payload": {
+              "order": {
+                "orderId": "1234",
+                "orderDate": "2018-01-01",
+                "orderItems": [
+                  {
+                    "itemId": "1234",
+                    "itemName": "item1",
+                    "quantity": 1,
+                    "price": 10
+                  },
+                  {
+                    "itemId": "5678",
+                    "itemName": "item2",
+                    "quantity": 2,
+                    "price": 20
+                  }
+                ],
+                "totalPrice": 50
+              }
+            }
+          },
+          "contentType": "application/json",
+          "userProperties": {},
+          "messageId": "a8a9331d5025406ab38ce1b9be794cd3",
+          "scheduledEnqueueTimeUtc": "1/1/0001 12:00:00 AM",
+          "timeToLive": "14.00:00:00",
+          "deliveryCount": 1,
+          "enqueuedSequenceNumber": 0,
+          "enqueuedTimeUtc": "2025-04-23T20:27:59.574Z",
+          "lockedUntilUtc": "2025-04-23T20:28:59.59Z",
+          "lockToken": "c80bb746-723f-4b58-9d85-05e5fb61d050",
+          "sequenceNumber": 12
+        }
+      }
+    }
+  },
+  "actionMocks": {
+    "Call_External_API": {
+      "name": "Call_External_API",
+      "status": "Succeeded",
+      "outputs": {
+        "statusCode": 200,
+        "body": {
+          "status": "Awesome!"
+        }
+      }
+    },
+    "Complete_the_message_in_a_queue": {
+      "name": "Complete_the_message_in_a_queue",
+      "status": "Succeeded",
+      "outputs": {
+        "statusCode": "OK",
+        "body": {}
+      }
+    }
+  }
+}

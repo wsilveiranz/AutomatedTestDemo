@@ -1,0 +1,151 @@
+{
+    "definition": {
+        "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+        "actions": {
+            "Response": {
+                "type": "Response",
+                "kind": "Http",
+                "inputs": {
+                    "statusCode": 200
+                },
+                "runAfter": {
+                    "For_each": [
+                        "SUCCEEDED"
+                    ]
+                }
+            },
+            "List_Accounts": {
+                "type": "ApiConnection",
+                "inputs": {
+                    "host": {
+                        "connection": {
+                            "referenceName": "commondataservice"
+                        }
+                    },
+                    "method": "get",
+                    "headers": {
+                        "prefer": "odata.include-annotations=*",
+                        "accept": "application/json;odata.metadata=full",
+                        "organization": "https://newdefaultenvironmentupgrade.crm10.dynamics.com"
+                    },
+                    "path": "/api/data/v9.1/@{encodeURIComponent(encodeURIComponent('accounts'))}"
+                },
+                "runAfter": {}
+            },
+            "For_each": {
+                "type": "Foreach",
+                "foreach": "@body('List_Accounts')?['value']",
+                "actions": {
+                    "Get_Contact": {
+                        "type": "ApiConnection",
+                        "inputs": {
+                            "host": {
+                                "connection": {
+                                    "referenceName": "commondataservice"
+                                }
+                            },
+                            "method": "get",
+                            "headers": {
+                                "prefer": "odata.include-annotations=*",
+                                "accept": "application/json;odata.metadata=full",
+                                "organization": "https://newdefaultenvironmentupgrade.crm10.dynamics.com"
+                            },
+                            "path": "/api/data/v9.1/@{encodeURIComponent(encodeURIComponent('contacts'))}(@{encodeURIComponent(encodeURIComponent(item()?['_primarycontactid_value'],' '))})"
+                        }
+                    },
+                    "Get_Balance": {
+                        "type": "Http",
+                        "inputs": {
+                            "uri": "@parameters('balanceTargetUrl')",
+                            "method": "GET",
+                            "queries": {
+                                "accNum": "@{item()?['accountnumber']}"
+                            }
+                        },
+                        "runtimeConfiguration": {
+                            "contentTransfer": {
+                                "transferMode": "Chunked"
+                            }
+                        }
+                    },
+                    "Parse_JSON": {
+                        "type": "ParseJson",
+                        "inputs": {
+                            "content": "@body('Get_Balance')",
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "AccountId": {
+                                        "type": "string"
+                                    },
+                                    "Balance": {
+                                        "type": "integer"
+                                    }
+                                }
+                            }
+                        },
+                        "runAfter": {
+                            "Get_Balance": [
+                                "SUCCEEDED"
+                            ]
+                        }
+                    },
+                    "Create_Message": {
+                        "type": "Compose",
+                        "inputs": {
+                            "AccountId": "@{body('Parse_JSON')?['AccountId']}",
+                            "AccountName": "@{item()?['name']}",
+                            "ContactName": "@{body('Get_Contact')?['firstname']} @{body('Get_Contact')?['lastname']}",
+                            "ContactEmail": "@{body('Get_Contact')?['emailaddress1']}",
+                            "Balance": "@body('Parse_JSON')?['Balance']"
+                        },
+                        "runAfter": {
+                            "Get_Contact": [
+                                "SUCCEEDED"
+                            ],
+                            "Parse_JSON": [
+                                "SUCCEEDED"
+                            ]
+                        }
+                    },
+                    "Send_message": {
+                        "type": "ServiceProvider",
+                        "inputs": {
+                            "parameters": {
+                                "entityName": "@parameters('queueBalance')",
+                                "message": {
+                                    "contentData": "@outputs('Create_Message')",
+                                    "contentType": "application/json"
+                                }
+                            },
+                            "serviceProviderConfiguration": {
+                                "connectionName": "serviceBus",
+                                "operationId": "sendMessage",
+                                "serviceProviderId": "/serviceProviders/serviceBus"
+                            }
+                        },
+                        "runAfter": {
+                            "Create_Message": [
+                                "SUCCEEDED"
+                            ]
+                        }
+                    }
+                },
+                "runAfter": {
+                    "List_Accounts": [
+                        "SUCCEEDED"
+                    ]
+                }
+            }
+        },
+        "contentVersion": "1.0.0.0",
+        "outputs": {},
+        "triggers": {
+            "When_a_HTTP_request_is_received": {
+                "type": "Request",
+                "kind": "Http"
+            }
+        }
+    },
+    "kind": "Stateful"
+}
