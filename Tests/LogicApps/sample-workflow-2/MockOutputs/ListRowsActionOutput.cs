@@ -141,7 +141,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Choose the primary contact for the account to provide quick access to contact details.
         /// </summary>
-        [JsonProperty(PropertyName="_primarycontactid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_primarycontactid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string PrimaryContactType { get; set; }
 
         /// <summary>

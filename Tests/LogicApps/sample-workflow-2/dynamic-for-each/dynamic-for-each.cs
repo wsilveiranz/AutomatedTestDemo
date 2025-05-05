@@ -51,7 +51,7 @@ namespace LogicApps.Tests
         /// 5. Validating that each iteration correctly processes its specific data
         /// </summary>
         [TestMethod]
-        public async Task Create_From_Definition_MultipleRows()
+        public async Task Dynamic_Callbacks()
         {
             // PREPARE: Generate mock trigger and action data.
             var triggerMockOutput = new WhenAHTTPRequestIsReceivedTriggerOutput();
@@ -127,7 +127,7 @@ namespace LogicApps.Tests
         {
             var body = new GetARowByIDActionOutputBody();
             var accountId = context.ActionContext.CurrentIterationInput.Item["accountnumber"].ToString();
-            body.Firstname = $"Joe {accountId}";
+            body.Firstname = $"@@Joe {accountId}";
             body.Lastname = $"Smith {accountId}";
             body.Emailaddress1 = $"Joe.Smith@{accountId}.com";
             var actionMockOutput = new GetARowByIDActionOutput

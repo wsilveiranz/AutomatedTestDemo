@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "APP_KIND": "workflowapp",
+    "ProjectDirectoryPath": "<enter your path here>",
+    "WORKFLOWS_TENANT_ID": "<enter your tenant id here>",
+    "WORKFLOWS_SUBSCRIPTION_ID": "<enter your subscription id here>",
+    "WORKFLOWS_RESOURCE_GROUP_NAME": "<enter your resource group name here>",
+    "WORKFLOWS_LOCATION_NAME": "<enter your location name here>",
+    "WORKFLOWS_MANAGEMENT_BASE_URI": "https://management.azure.com/",
+    "serviceBus_connectionString": "<enter your service bus connection string here>",
+    "commondataservice-connectionKey": "",
+    "commondataservice-ConnectionRuntimeUrl": "<enter your dataverse connection runtime url here>"
+  }
+}
