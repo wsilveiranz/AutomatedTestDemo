@@ -11,7 +11,7 @@
     "WORKFLOWS_LOCATION_NAME": "<enter your location name here>",
     "WORKFLOWS_MANAGEMENT_BASE_URI": "https://management.azure.com/",
     "serviceBus_connectionString": "<enter your service bus connection string here>",
-    "commondataservice-connectionKey": "",
+    "commondataservice-connectionKey": "<enter your dataverse connection key here>",
     "commondataservice-ConnectionRuntimeUrl": "<enter your dataverse connection runtime url here>"
   }
 }
