@@ -79,7 +79,9 @@ namespace LogicApps.Tests
             Assert.AreEqual(expected: TestWorkflowStatus.Succeeded, actual: testRun.Status);
             Assert.IsNotNull(value: testRun.Actions["For_each"].ChildActions["Compose"].Repetitions);
             Assert.AreEqual(expected: TestWorkflowStatus.Succeeded, actual: testRun.Actions["For_each"].ChildActions["Compose"].Status);
-            
+            Assert.AreEqual(expected: TestWorkflowStatus.Succeeded, actual: testRun.Actions["Response"].Status);
+            Assert.IsNotNull(value: testRun.Actions["Response"].Outputs["body"]);
+
             var seed = 1000;
             foreach (var repetition in testRun.Actions["For_each"].ChildActions["Compose"].Repetitions)
             {

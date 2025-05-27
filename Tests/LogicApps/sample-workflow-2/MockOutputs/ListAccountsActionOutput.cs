@@ -9,30 +9,30 @@ using System;
 namespace LogicApps.Tests.Mocks.sample_workflow_2
 {
     /// <summary>
-    /// The <see cref="ListRowsActionMock"/> class.
+    /// The <see cref="ListAccountsActionMock"/> class.
     /// </summary>
-    public class ListRowsActionMock : ActionMock
+    public class ListAccountsActionMock : ActionMock
     {
         /// <summary>
-        /// Creates a mocked instance for  <see cref="ListRowsActionMock"/> with static outputs.
+        /// Creates a mocked instance for  <see cref="ListAccountsActionMock"/> with static outputs.
         /// </summary>
-        public ListRowsActionMock(TestWorkflowStatus status = TestWorkflowStatus.Succeeded, string name = null, ListRowsActionOutput outputs = null)
-            : base(status: status, name: name, outputs: outputs ?? new ListRowsActionOutput())
+        public ListAccountsActionMock(TestWorkflowStatus status = TestWorkflowStatus.Succeeded, string name = null, ListAccountsActionOutput outputs = null)
+            : base(status: status, name: name, outputs: outputs ?? new ListAccountsActionOutput())
         {
         }
 
         /// <summary>
-        /// Creates a mocked instance for  <see cref="ListRowsActionMock"/> with static error info.
+        /// Creates a mocked instance for  <see cref="ListAccountsActionMock"/> with static error info.
         /// </summary>
-        public ListRowsActionMock(TestWorkflowStatus status, string name = null, TestErrorInfo error = null)
+        public ListAccountsActionMock(TestWorkflowStatus status, string name = null, TestErrorInfo error = null)
             : base(status: status, name: name, error: error)
         {
         }
 
         /// <summary>
-        /// Creates a mocked instance for <see cref="ListRowsActionMock"/> with a callback function for dynamic outputs.
+        /// Creates a mocked instance for <see cref="ListAccountsActionMock"/> with a callback function for dynamic outputs.
         /// </summary>
-        public ListRowsActionMock(Func<TestExecutionContext, ListRowsActionMock> onGetActionMock, string name = null)
+        public ListAccountsActionMock(Func<TestExecutionContext, ListAccountsActionMock> onGetActionMock, string name = null)
             : base(onGetActionMock: onGetActionMock, name: name)
         {
         }
@@ -40,22 +40,22 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
 
 
     /// <summary>
-    /// Class for ListRowsActionOutput representing an object with properties.
+    /// Class for ListAccountsActionOutput representing an object with properties.
     /// </summary>
-    public class ListRowsActionOutput : MockOutput
+    public class ListAccountsActionOutput : MockOutput
     {
         /// <summary>
         /// List of tables
         /// </summary>
-        public ListRowsActionOutputBody Body { get; set; }
+        public ListAccountsActionOutputBody Body { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListRowsActionOutput"/> class.
+        /// Initializes a new instance of the <see cref="ListAccountsActionOutput"/> class.
         /// </summary>
-        public ListRowsActionOutput()
+        public ListAccountsActionOutput()
         {
             this.StatusCode = HttpStatusCode.OK;
-            this.Body = new ListRowsActionOutputBody();
+            this.Body = new ListAccountsActionOutputBody();
         }
 
     }
@@ -63,7 +63,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
     /// <summary>
     /// List of tables
     /// </summary>
-    public class ListRowsActionOutputBody
+    public class ListAccountsActionOutputBody
     {
         /// <summary>
         /// List of Items
@@ -73,13 +73,13 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// The url to fetch next page data.
         /// </summary>
-        [JsonProperty(PropertyName="_odata.nextLink")]
+        [JsonProperty(PropertyName="@odata.nextLink")]
         public string Nextlink { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="ListRowsActionOutputBody"/> class.
+        /// Initializes a new instance of the <see cref="ListAccountsActionOutputBody"/> class.
         /// </summary>
-        public ListRowsActionOutputBody()
+        public ListAccountsActionOutputBody()
         {
             this.Value = new List<ListofItems>();
             this.Nextlink = string.Empty;
@@ -135,7 +135,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// OData row id
         /// </summary>
-        [JsonProperty(PropertyName="_odata.id")]
+        [JsonProperty(PropertyName="@odata.id")]
         public string ODataId { get; set; }
 
         /// <summary>
@@ -447,7 +447,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows who created the record on behalf of another user.
         /// </summary>
-        [JsonProperty(PropertyName="_createdonbehalfby_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_createdonbehalfby_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string CreatedByDelegateType { get; set; }
 
         /// <summary>
@@ -458,7 +458,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows the external party who created the record.
         /// </summary>
-        [JsonProperty(PropertyName="_createdbyexternalparty_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_createdbyexternalparty_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string CreatedByExternalPartyType { get; set; }
 
         /// <summary>
@@ -471,7 +471,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows who created the record.
         /// </summary>
-        [JsonProperty(PropertyName="_createdby_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_createdby_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string CreatedByType { get; set; }
 
         public string AdxCreatedbyusername { get; set; }
@@ -504,7 +504,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Choose the local currency for the record to make sure budgets are reported in the correct currency.
         /// </summary>
-        [JsonProperty(PropertyName="_transactioncurrencyid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_transactioncurrencyid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string CurrencyType { get; set; }
 
         /// <summary>
@@ -615,7 +615,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Last SLA that was applied to this case. This field is for internal use only.
         /// </summary>
-        [JsonProperty(PropertyName="_slainvokedid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_slainvokedid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string LastSLAappliedType { get; set; }
 
         /// <summary>
@@ -626,7 +626,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Unique identifier for Account associated with Account.
         /// </summary>
-        [JsonProperty(PropertyName="_msa_managingpartnerid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_msa_managingpartnerid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string ManagingPartnerType { get; set; }
 
         /// <summary>
@@ -652,7 +652,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows the master account that the account was merged with.
         /// </summary>
-        [JsonProperty(PropertyName="_masterid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_masterid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string MasterIDType { get; set; }
 
         /// <summary>
@@ -668,7 +668,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows who created the record on behalf of another user.
         /// </summary>
-        [JsonProperty(PropertyName="_modifiedonbehalfby_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_modifiedonbehalfby_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string ModifiedByDelegateType { get; set; }
 
         /// <summary>
@@ -679,7 +679,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows the external party who modified the record.
         /// </summary>
-        [JsonProperty(PropertyName="_modifiedbyexternalparty_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_modifiedbyexternalparty_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string ModifiedByExternalPartyType { get; set; }
 
         /// <summary>
@@ -692,7 +692,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows who last updated the record.
         /// </summary>
-        [JsonProperty(PropertyName="_modifiedby_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_modifiedby_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string ModifiedByType { get; set; }
 
         public string AdxModifiedbyusername { get; set; }
@@ -722,7 +722,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Enter the user or team who is assigned to manage the record. This field is updated every time the record is assigned to a different user.
         /// </summary>
-        [JsonProperty(PropertyName="_ownerid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_ownerid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string OwnerType { get; set; }
 
         /// <summary>
@@ -738,7 +738,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Shows the business unit that the record owner belongs to.
         /// </summary>
-        [JsonProperty(PropertyName="_owningbusinessunit_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_owningbusinessunit_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string OwningBusinessUnitType { get; set; }
 
         /// <summary>
@@ -749,7 +749,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Unique identifier of the team who owns the account.
         /// </summary>
-        [JsonProperty(PropertyName="_owningteam_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_owningteam_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string OwningTeamType { get; set; }
 
         /// <summary>
@@ -760,7 +760,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Unique identifier of the user who owns the account.
         /// </summary>
-        [JsonProperty(PropertyName="_owninguser_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_owninguser_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string OwningUserType { get; set; }
 
         /// <summary>
@@ -771,7 +771,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Choose the parent account associated with this account to show parent and child businesses in reporting and analytics.
         /// </summary>
-        [JsonProperty(PropertyName="_parentaccountid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_parentaccountid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string ParentAccountType { get; set; }
 
         /// <summary>
@@ -807,7 +807,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Choose the preferred service representative for reference when you schedule service activities for the account.
         /// </summary>
-        [JsonProperty(PropertyName="_preferredsystemuserid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_preferredsystemuserid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string PreferredUserType { get; set; }
 
         /// <summary>
@@ -863,7 +863,7 @@ namespace LogicApps.Tests.Mocks.sample_workflow_2
         /// <summary>
         /// Choose the service level agreement (SLA) that you want to apply to the Account record.
         /// </summary>
-        [JsonProperty(PropertyName="_slaid_value_Microsoft.Dynamics.CRM.lookuplogicalname")]
+        [JsonProperty(PropertyName="_slaid_value@Microsoft.Dynamics.CRM.lookuplogicalname")]
         public string SLAType { get; set; }
 
         /// <summary>

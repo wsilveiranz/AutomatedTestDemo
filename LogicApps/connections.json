@@ -21,6 +21,16 @@
       },
       "connectionRuntimeUrl": "@parameters('commondataservice-ConnectionRuntimeUrl')",
       "authentication": "@parameters('commondataservice-Authentication')"
+    },
+    "commondataservice-1": {
+      "api": {
+        "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/providers/Microsoft.Web/locations/@{appsetting('WORKFLOWS_LOCATION_NAME')}/managedApis/commondataservice"
+      },
+      "connection": {
+        "id": "/subscriptions/@{appsetting('WORKFLOWS_SUBSCRIPTION_ID')}/resourceGroups/@{appsetting('WORKFLOWS_RESOURCE_GROUP_NAME')}/providers/Microsoft.Web/connections/commondataservice"
+      },
+      "connectionRuntimeUrl": "@parameters('commondataservice-1-ConnectionRuntimeUrl')",
+      "authentication": "@parameters('commondataservice-1-Authentication')"
     }
   }
 }

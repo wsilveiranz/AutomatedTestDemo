@@ -14,7 +14,7 @@
                     "headers": {
                         "prefer": "odata.include-annotations=*",
                         "accept": "application/json;odata.metadata=full",
-                        "organization": "https://newdefaultenvironmentupgrade.crm10.dynamics.com"
+                        "organization": "https://orgac004961.crm.dynamics.com"
                     },
                     "path": "/api/data/v9.1/@{encodeURIComponent(encodeURIComponent('accounts'))}"
                 },
@@ -63,7 +63,13 @@
                 "type": "Response",
                 "kind": "Http",
                 "inputs": {
-                    "statusCode": 200
+                    "statusCode": 200,
+                    "headers": {
+                        "Content-Type": "application-json"
+                    },
+                    "body": {
+                        "status": "success"
+                    }
                 },
                 "runAfter": {
                     "For_each": [

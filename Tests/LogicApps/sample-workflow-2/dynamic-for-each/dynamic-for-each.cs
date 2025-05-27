@@ -57,7 +57,7 @@ namespace LogicApps.Tests
             var triggerMockOutput = new WhenAHTTPRequestIsReceivedTriggerOutput();
             // Example: triggerMockOutput.Body.Id = "SampleId";
             var triggerMock = new WhenAHTTPRequestIsReceivedTriggerMock(outputs: triggerMockOutput);
-            var dvListRowMock = new ListRowsActionMock(name: "List_Accounts", onGetActionMock: CallListActionMockOutputCallback);
+            var dvListRowMock = new  ListAccountsActionMock(name: "List_Accounts", onGetActionMock: CallListActionMockOutputCallback);
             var dvGetContactMock = new GetARowByIDActionMock(name: "Get_contact", onGetActionMock: CallGetContactActionMockOutputCallback);
             var httpActionMock = new HTTPActionMock(name: "Get_Balance", onGetActionMock: CallGetHTTPActionMockOutputCallback);
             var sbSendMessage = new SendMessageActionOutput();
@@ -186,10 +186,10 @@ namespace LogicApps.Tests
         /// </summary>
         /// <param name="context">The test execution context for the current test run,
         /// though in this case the context isn't used since the mock data is statically generated.</param>
-        private ListRowsActionMock CallListActionMockOutputCallback(TestExecutionContext context)
+        private ListAccountsActionMock CallListActionMockOutputCallback(TestExecutionContext context)
         {
             var seed = 1000;
-            var body = new ListRowsActionOutputBody
+            var body = new ListAccountsActionOutputBody
             {
                 Value = new List<ListofItems>()
             };
@@ -203,11 +203,11 @@ namespace LogicApps.Tests
                     Name = "Name" + " " + Account
                 });
             }
-            var actionMockOutput = new ListRowsActionOutput
+            var actionMockOutput = new ListAccountsActionOutput
             {
                 Body = body
             };
-            ListRowsActionMock actionMock = new(name: "List_rows", status: TestWorkflowStatus.Succeeded, outputs: actionMockOutput);
+            ListAccountsActionMock actionMock = new(name: "List_Accounts", status: TestWorkflowStatus.Succeeded, outputs: actionMockOutput);
             return actionMock;
         }
         #endregion

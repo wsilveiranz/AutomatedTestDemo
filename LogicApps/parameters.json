@@ -30,5 +30,17 @@
   "queueBalance": {
     "type": "String",
     "value": "queue_UnitTest_Balance"
+  },
+  "commondataservice-1-ConnectionRuntimeUrl": {
+    "type": "String",
+    "value": "@appsetting('commondataservice-1-ConnectionRuntimeUrl')"
+  },
+  "commondataservice-1-Authentication": {
+    "type": "Object",
+    "value": {
+      "type": "Raw",
+      "scheme": "Key",
+      "parameter": "@appsetting('commondataservice-1-connectionKey')"
+    }
   }
 }
